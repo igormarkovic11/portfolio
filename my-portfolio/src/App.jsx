@@ -128,7 +128,7 @@ const Portfolio = () => {
       title: "Ticketing Service (Bachelor's Thesis)",
       description:
         "Football club ticketing system with PayPal integration. Built with Spring Boot (backend) and Angular (frontend). RESTful architecture, secure transactions.",
-      tech: ["Spring Boot", "Angular", "PayPal API", "RDBMS"],
+      tech: ["Spring Boot", "Angular", "PayPal API", "MySQL"],
       link: "#",
       image: "🎫",
     },
@@ -136,7 +136,7 @@ const Portfolio = () => {
       title: "Football Club Management Platform",
       description:
         "High‑performance platform with live match commentary, roster management, league standings, and admin dashboard. Built with React, Vite, Firebase, deployed on Vercel.",
-      tech: ["React", "Vite", "Firebase", "Vercel"],
+      tech: ["React", "Vite", "Firebase", "Vercel", "PWA"],
       link: "#",
       image: "⚽",
     },
@@ -144,15 +144,15 @@ const Portfolio = () => {
       title: "Booking Service (Salon / Appointment)",
       description:
         "Appointment scheduling system with user time‑slot selection and admin panel. Focus on clean, structured design.",
-      tech: ["Spring Boot", "React", "RDBMS"],
+      tech: ["Angular", "Firebase", "PWA"],
       link: "#",
       image: "📅",
     },
     {
-      title: "Hospital Management Desktop App",
+      title: "Hospital Management Desktop App (Student Project)",
       description:
         "Full CRUD operations for doctors, patients, medical records, and appointments. Built with .NET (WPF).",
-      tech: [".NET", "WPF", "C#"],
+      tech: [".NET", "WPF", "C#", "SQL Server"],
       link: "#",
       image: "🏥",
     },
@@ -160,12 +160,12 @@ const Portfolio = () => {
       title: "E‑Government Module (Student Project)",
       description:
         "Statistics Department module with data aggregation and reporting. Containerised with Docker, inter‑service communication.",
-      tech: ["Docker", "REST", "Team Collaboration"],
+      tech: ["Docker", "Angular", "Team Collaboration"],
       link: "#",
       image: "🏛️",
     },
     {
-      title: "Slagalica Mobile Game",
+      title: "Slagalica Mobile Game (Student Project)",
       description:
         "Android quiz app with word puzzles and math challenges, real‑time scoring and state management.",
       tech: ["Java", "Android Studio"],
