@@ -1137,6 +1137,7 @@ const Portfolio = () => {
                 <LuLinkedin size={24} />
                 LinkedIn
               </a>
+
               <button
                 onClick={() => window.open("/resume.pdf", "_blank")}
                 style={{
