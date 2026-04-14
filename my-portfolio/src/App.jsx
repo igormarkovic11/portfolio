@@ -7,6 +7,8 @@ import {
   LuGithub,
   LuMenu,
   LuX,
+  LuDownload,
+  LuArrowUp,
 } from "react-icons/lu";
 
 // --- Star class (outside component) ---
@@ -64,6 +66,8 @@ const Portfolio = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Detect mobile screen size
   useEffect(() => {
@@ -73,6 +77,19 @@ const Portfolio = () => {
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Scroll progress and show scroll-to-top button
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(progress);
+      setShowScrollTop(window.scrollY > 500);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Starfield animation
@@ -186,11 +203,37 @@ const Portfolio = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
       setActiveSection(id);
-      setIsMenuOpen(false); // close mobile menu after click
+      setIsMenuOpen(false);
     }
   };
 
-  // Nav links array for reuse
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Email handler with fallback for desktop
+  const handleEmailClick = (e) => {
+    e.preventDefault();
+    const email = "igormarkovic53@gmail.com";
+
+    // Try to open email client
+    window.location.href = `mailto:${email}`;
+
+    // Fallback: Copy to clipboard after short delay (for desktop users)
+    setTimeout(() => {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard
+          .writeText(email)
+          .then(() => {
+            alert(`Email copied to clipboard: ${email}`);
+          })
+          .catch(() => {
+            console.log("Could not copy email");
+          });
+      }
+    }, 100);
+  };
+
   const navLinks = ["home", "about", "projects", "tech", "contact"];
 
   return (
@@ -205,6 +248,20 @@ const Portfolio = () => {
         overflow: "hidden",
       }}
     >
+      {/* Scroll Progress Bar */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: `${scrollProgress}%`,
+          height: "3px",
+          background: "linear-gradient(90deg, #a78bfa, #ec4899)",
+          zIndex: 1000,
+          transition: "width 0.1s ease",
+        }}
+      />
+
       <canvas
         ref={canvasRef}
         style={{
@@ -253,6 +310,45 @@ const Portfolio = () => {
           transition: "transform 0.3s ease-out",
         }}
       />
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          aria-label="Scroll to top"
+          style={{
+            position: "fixed",
+            bottom: "2rem",
+            right: "2rem",
+            width: "50px",
+            height: "50px",
+            borderRadius: "50%",
+            background: "linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%)",
+            border: "none",
+            color: "white",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 4px 20px rgba(167, 139, 250, 0.4)",
+            zIndex: 999,
+            transition: "all 0.3s ease",
+            animation: "fadeIn 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "scale(1.1)";
+            e.currentTarget.style.boxShadow =
+              "0 6px 28px rgba(167, 139, 250, 0.5)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "scale(1)";
+            e.currentTarget.style.boxShadow =
+              "0 4px 20px rgba(167, 139, 250, 0.4)";
+          }}
+        >
+          <LuArrowUp size={24} />
+        </button>
+      )}
 
       <div style={{ position: "relative", zIndex: 1 }}>
         {/* Navigation */}
@@ -334,6 +430,7 @@ const Portfolio = () => {
           {isMobile && (
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
               style={{
                 background: "none",
                 border: "none",
@@ -355,10 +452,10 @@ const Portfolio = () => {
           <div
             style={{
               position: "fixed",
-              top: "70px", // adjust based on nav height
+              top: "70px",
               left: 0,
               right: 0,
-              background: "rgba(5, 5, 20, 0.95)",
+              background: "rgba(5, 5, 20, 0.98)",
               backdropFilter: "blur(10px)",
               borderBottom: "1px solid rgba(138, 43, 226, 0.2)",
               padding: "1rem 2rem",
@@ -366,6 +463,9 @@ const Portfolio = () => {
               flexDirection: "column",
               gap: "1rem",
               zIndex: 99,
+              animation: "slideDown 0.3s ease-out",
+              maxHeight: "calc(100vh - 70px)",
+              overflowY: "auto",
             }}
           >
             {navLinks.map((section) => (
@@ -391,7 +491,7 @@ const Portfolio = () => {
           </div>
         )}
 
-        {/* Hero Section (unchanged) */}
+        {/* Hero Section */}
         <section
           id="home"
           style={{
@@ -400,7 +500,7 @@ const Portfolio = () => {
             alignItems: "center",
             justifyContent: "center",
             textAlign: "center",
-            padding: "2rem",
+            padding: isMobile ? "6rem 1.5rem 2rem" : "2rem",
           }}
         >
           <div style={{ maxWidth: "800px" }}>
@@ -459,6 +559,7 @@ const Portfolio = () => {
                 animation: "slideDown 0.8s ease-out",
                 animationDelay: "0.8s",
                 animationFillMode: "both",
+                flexWrap: "wrap",
               }}
             >
               <button
@@ -940,6 +1041,7 @@ const Portfolio = () => {
             >
               <a
                 href="mailto:igormarkovic53@gmail.com"
+                onClick={handleEmailClick}
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -1035,6 +1137,38 @@ const Portfolio = () => {
                 <LuLinkedin size={24} />
                 LinkedIn
               </a>
+              <button
+                onClick={() => window.open("/markovicIgorCV.pdf", "_blank")}
+                style={{
+                  padding: "1rem 2.5rem",
+                  fontSize: "1.1rem",
+                  fontWeight: "600",
+                  background: "transparent",
+                  color: "#a78bfa",
+                  border: "2px solid #a78bfa",
+                  borderRadius: "12px",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  fontFamily: "inherit",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = "rgba(167, 139, 250, 0.1)";
+                  e.target.style.transform = "translateY(-3px)";
+                  e.target.style.boxShadow =
+                    "0 8px 24px rgba(167, 139, 250, 0.3)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = "transparent";
+                  e.target.style.transform = "translateY(0)";
+                  e.target.style.boxShadow = "none";
+                }}
+              >
+                <LuDownload size={20} />
+                Download CV
+              </button>
             </div>
           </div>
         </section>
