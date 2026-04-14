@@ -1138,7 +1138,7 @@ const Portfolio = () => {
                 LinkedIn
               </a>
               <button
-                onClick={() => window.open("/markovicIgorCV.pdf", "_blank")}
+                onClick={() => window.open("/resume.pdf", "_blank")}
                 style={{
                   padding: "1rem 2.5rem",
                   fontSize: "1.1rem",
