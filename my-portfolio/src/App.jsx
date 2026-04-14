@@ -1139,7 +1139,12 @@ const Portfolio = () => {
               </a>
 
               <button
-                onClick={() => window.open("/portfolio/resume.pdf", "_blank")}
+                onClick={() =>
+                  window.open(
+                    "https://igormarkovic11.github.io/resume.pdf",
+                    "_blank",
+                  )
+                }
                 style={{
                   padding: "1rem 2.5rem",
                   fontSize: "1.1rem",
