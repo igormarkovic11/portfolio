@@ -9,6 +9,7 @@ import {
   LuX,
   LuDownload,
   LuArrowUp,
+  LuPlay,
 } from "react-icons/lu";
 
 // --- Star class (outside component) ---
@@ -144,49 +145,66 @@ const Portfolio = () => {
     {
       title: "Ticketing Service (Bachelor's Thesis)",
       description:
-        "Football club ticketing system with PayPal integration. Built with Spring Boot (backend) and Angular (frontend). RESTful architecture, secure transactions.",
-      tech: ["Spring Boot", "Angular", "PayPal API", "MySQL"],
-      link: "#",
+        "A modern full-stack online ticketing platform for events, concerts, sports, and entertainment. The application provides seamless ticket purchasing, event management, and real-time seat selection with server-side rendering capabilities.",
+      tech: [
+        "Java",
+        "Spring Boot",
+        "Angular",
+        "TypeScript",
+        "PayPal API",
+        "MySQL",
+      ],
+      link: "https://github.com/igormarkovic11/online-ticketing-service",
       image: "🎫",
     },
     {
       title: "Football Club Management Platform",
       description:
-        "High‑performance platform with live match commentary, roster management, league standings, and admin dashboard. Built with React, Vite, Firebase, deployed on Vercel.",
-      tech: ["React", "Vite", "Firebase", "Vercel", "PWA"],
-      link: "#",
+        "A modern, responsive website for FK Novo Doba football club built with React, TypeScript, and Firebase. The site features real-time match updates, player rosters, league standings, news management, and a comprehensive admin dashboard.",
+      tech: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Firebase",
+        "Vercel",
+        "Tailwind CSS",
+        "PWA",
+      ],
+      link: "https://github.com/igormarkovic11/fknovodoba",
       image: "⚽",
+      demoLink: "https://fknovodoba.vercel.app/",
     },
     {
       title: "Booking Service (Salon / Appointment)",
       description:
-        "Appointment scheduling system with user time‑slot selection and admin panel. Focus on clean, structured design.",
-      tech: ["Angular", "Firebase", "PWA"],
-      link: "#",
+        "A modern, responsive barber shop booking application built with Angular 18, Firebase, and Angular Material. The application provides a seamless booking experience for clients and comprehensive management tools for administrators.",
+      tech: ["Angular", "TypeScript", "Angular Material", "Firebase", "PWA"],
+      link: "https://github.com/igormarkovic11/booking",
       image: "📅",
+      demoLink: "https://booking-ashen-nine.vercel.app",
     },
     {
-      title: "Hospital Management Desktop App (Student Project)",
+      title: "Student Administration System (Student Project)",
       description:
-        "Full CRUD operations for doctors, patients, medical records, and appointments. Built with .NET (WPF).",
-      tech: [".NET", "WPF", "C#", "SQL Server"],
-      link: "#",
-      image: "🏥",
+        "A comprehensive student administration system (Studentska Služba) for educational institutions. This full-stack application manages student records, courses, exams, grades, and administrative tasks with separate interfaces for students, professors, and administrators.",
+      tech: ["Java", "Spring Boot", "Angular", "TypeScript", "MySQL"],
+      link: "https://github.com/igormarkovic11/eObrazovanje",
+      image: "🎓",
     },
     {
-      title: "E‑Government Module (Student Project)",
+      title: "E‑Government Module",
       description:
-        "Statistics Department module with data aggregation and reporting. Containerised with Docker, inter‑service communication.",
-      tech: ["Docker", "Angular", "Team Collaboration"],
+        "Engineered a high-performance data aggregation and reporting module for a collaborative E-Government ecosystem. Orchestrated seamless inter-service communication using Docker to ensure environment consistency.",
+      tech: ["Docker", "Angular", "REST API", "Microservices"],
       link: "#",
       image: "🏛️",
     },
     {
       title: "Slagalica Mobile Game (Student Project)",
       description:
-        "Android quiz app with word puzzles and math challenges, real‑time scoring and state management.",
-      tech: ["Java", "Android Studio"],
-      link: "#",
+        "An Android quiz game application inspired by the popular Serbian TV show ''Slagalica''. The app features multiple game types, real-time multiplayer functionality, and a comprehensive scoring system.",
+      tech: ["Java", "Android", "Android Studio", "Firebase", "Gradle"],
+      link: "https://github.com/igormarkovic11/android",
       image: "📱",
     },
   ];
@@ -854,29 +872,72 @@ const Portfolio = () => {
                       </span>
                     ))}
                   </div>
-                  <a
-                    href={project.link}
+                  <div
                     style={{
-                      display: "inline-flex",
+                      display: "flex",
+                      gap: "1.5rem",
                       alignItems: "center",
-                      gap: "0.5rem",
-                      color: "#a78bfa",
-                      textDecoration: "none",
-                      fontSize: "0.95rem",
-                      fontWeight: "600",
-                      transition: "all 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.color = "#c4b5fd";
-                      e.target.style.gap = "0.8rem";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.color = "#a78bfa";
-                      e.target.style.gap = "0.5rem";
                     }}
                   >
-                    View Project <LuExternalLink size={16} />
-                  </a>
+                    {/* Existing View Project Link */}
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        color: "#a78bfa",
+                        textDecoration: "none",
+                        fontSize: "0.95rem",
+                        fontWeight: "600",
+                        transition: "all 0.3s ease",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#c4b5fd";
+                        e.currentTarget.style.gap = "0.8rem";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "#a78bfa";
+                        e.currentTarget.style.gap = "0.5rem";
+                      }}
+                    >
+                      View Project <LuExternalLink size={16} />
+                    </a>
+
+                    {/* Conditional Visit Demo Link */}
+                    {project.demoLink && (
+                      <a
+                        href={project.demoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "0.5rem",
+                          color: "#ffffff",
+                          background:
+                            "linear-gradient(135deg, #6d28d9 0%, #a78bfa 100%)",
+                          padding: "0.5rem 1rem",
+                          borderRadius: "8px",
+                          textDecoration: "none",
+                          fontSize: "0.9rem",
+                          fontWeight: "600",
+                          transition: "all 0.3s ease",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = "scale(1.05)";
+                          e.currentTarget.style.filter = "brightness(1.1)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = "scale(1)";
+                          e.currentTarget.style.filter = "brightness(1)";
+                        }}
+                      >
+                        Visit Demo <LuPlay size={16} />
+                      </a>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
