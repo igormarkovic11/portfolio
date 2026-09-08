@@ -9,7 +9,7 @@ import {
   LuX,
   LuDownload,
   LuArrowUp,
-  LuPlay,
+  LuBriefcase,
 } from "react-icons/lu";
 
 // --- Star class (outside component) ---
@@ -70,7 +70,6 @@ const Portfolio = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Detect mobile screen size
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -80,7 +79,6 @@ const Portfolio = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Scroll progress and show scroll-to-top button
   useEffect(() => {
     const handleScroll = () => {
       const totalHeight =
@@ -93,7 +91,6 @@ const Portfolio = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Starfield animation
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -128,7 +125,6 @@ const Portfolio = () => {
     };
   }, []);
 
-  // Mouse tracking for parallax
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({
@@ -140,71 +136,69 @@ const Portfolio = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // ----- CV‑BASED CONTENT -----
   const projects = [
+    {
+      title: "SmartSalon: Operations & Analytics PWA",
+      description:
+        "Progressive Web App for managing daily operations of a beauty salon. Features a realtime appointment calendar with drag‑and‑drop scheduling, daily and monthly financial analytics, cashbox expense tracking, and Web Push Notifications using VAPID and Supabase Edge Functions. Mobile‑first and installable across devices without an app store.",
+      tech: ["React", "TypeScript", "Supabase", "PWA", "Web Push/VAPID"],
+      link: "#",
+      image: "💇",
+    },
+    {
+      title: "Parking Management System (HTEC Internship)",
+      description:
+        "Backend for an enterprise parking application built during my internship at HTEC Group. Contributed to RESTful APIs, database integration, authentication and authorization, and core backend functionality in an Agile team environment.",
+      tech: ["Java", "Spring Boot", "REST APIs", "Agile/Scrum"],
+      link: "#",
+      image: "🅿️",
+    },
     {
       title: "Ticketing Service (Bachelor's Thesis)",
       description:
-        "A modern full-stack online ticketing platform for events, concerts, sports, and entertainment. The application provides seamless ticket purchasing, event management, and real-time seat selection with server-side rendering capabilities.",
-      tech: [
-        "Java",
-        "Spring Boot",
-        "Angular",
-        "TypeScript",
-        "PayPal API",
-        "MySQL",
-      ],
-      link: "https://github.com/igormarkovic11/online-ticketing-service",
+        "Football club ticketing system with PayPal integration. Built with Spring Boot (backend) and Angular (frontend). RESTful architecture, secure transactions.",
+      tech: ["Spring Boot", "Angular", "PayPal API", "MySQL"],
+      link: "#",
       image: "🎫",
     },
     {
       title: "Football Club Management Platform",
       description:
-        "A modern, responsive website for FK Novo Doba football club built with React, TypeScript, and Firebase. The site features real-time match updates, player rosters, league standings, news management, and a comprehensive admin dashboard.",
-      tech: [
-        "React",
-        "TypeScript",
-        "Vite",
-        "Firebase",
-        "Vercel",
-        "Tailwind CSS",
-        "PWA",
-      ],
-      link: "https://github.com/igormarkovic11/fknovodoba",
+        "High‑performance platform with live match commentary, roster management, league standings, and admin dashboard. Built with React, Vite, Firebase, deployed on Vercel.",
+      tech: ["React", "Vite", "Firebase", "Vercel", "PWA"],
+      link: "#",
       image: "⚽",
-      demoLink: "https://fknovodoba.vercel.app/",
     },
     {
       title: "Booking Service (Salon / Appointment)",
       description:
-        "A modern, responsive barber shop booking application built with Angular 18, Firebase, and Angular Material. The application provides a seamless booking experience for clients and comprehensive management tools for administrators.",
-      tech: ["Angular", "TypeScript", "Angular Material", "Firebase", "PWA"],
-      link: "https://github.com/igormarkovic11/booking",
+        "Appointment scheduling system with user time‑slot selection and admin panel. Focus on clean, structured design.",
+      tech: ["Angular", "Firebase", "PWA"],
+      link: "#",
       image: "📅",
-      demoLink: "https://booking-ashen-nine.vercel.app",
     },
     {
-      title: "Student Administration System (Student Project)",
+      title: "Hospital Management Desktop App (Student Project)",
       description:
-        "A comprehensive student administration system (Studentska Služba) for educational institutions. This full-stack application manages student records, courses, exams, grades, and administrative tasks with separate interfaces for students, professors, and administrators.",
-      tech: ["Java", "Spring Boot", "Angular", "TypeScript", "MySQL"],
-      link: "https://github.com/igormarkovic11/eObrazovanje",
-      image: "🎓",
+        "Full CRUD operations for doctors, patients, medical records, and appointments. Built with .NET (WPF).",
+      tech: [".NET", "WPF", "C#", "SQL Server"],
+      link: "#",
+      image: "🏥",
     },
     {
-      title: "E‑Government Module",
+      title: "E‑Government Module (Student Project)",
       description:
-        "Engineered a high-performance data aggregation and reporting module for a collaborative E-Government ecosystem. Orchestrated seamless inter-service communication using Docker to ensure environment consistency.",
-      tech: ["Docker", "Angular", "REST API", "Microservices"],
+        "Statistics Department module with data aggregation and reporting. Containerised with Docker, inter‑service communication.",
+      tech: ["Docker", "Angular", "Team Collaboration"],
       link: "#",
       image: "🏛️",
     },
     {
       title: "Slagalica Mobile Game (Student Project)",
       description:
-        "An Android quiz game application inspired by the popular Serbian TV show ''Slagalica''. The app features multiple game types, real-time multiplayer functionality, and a comprehensive scoring system.",
-      tech: ["Java", "Android", "Android Studio", "Firebase", "Gradle"],
-      link: "https://github.com/igormarkovic11/android",
+        "Android quiz app with word puzzles and math challenges, real‑time scoring and state management.",
+      tech: ["Java", "Android Studio"],
+      link: "#",
       image: "📱",
     },
   ];
@@ -229,15 +223,10 @@ const Portfolio = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Email handler with fallback for desktop
   const handleEmailClick = (e) => {
     e.preventDefault();
     const email = "igormarkovic53@gmail.com";
-
-    // Try to open email client
     window.location.href = `mailto:${email}`;
-
-    // Fallback: Copy to clipboard after short delay (for desktop users)
     setTimeout(() => {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard
@@ -266,7 +255,6 @@ const Portfolio = () => {
         overflow: "hidden",
       }}
     >
-      {/* Scroll Progress Bar */}
       <div
         style={{
           position: "fixed",
@@ -293,7 +281,6 @@ const Portfolio = () => {
         }}
       />
 
-      {/* Glow effects */}
       <div
         style={{
           position: "fixed",
@@ -329,7 +316,6 @@ const Portfolio = () => {
         }}
       />
 
-      {/* Scroll to Top Button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
@@ -369,7 +355,6 @@ const Portfolio = () => {
       )}
 
       <div style={{ position: "relative", zIndex: 1 }}>
-        {/* Navigation */}
         <nav
           style={{
             position: "fixed",
@@ -385,7 +370,6 @@ const Portfolio = () => {
             zIndex: 100,
           }}
         >
-          {/* Logo */}
           <div
             style={{
               fontSize: "1.5rem",
@@ -399,7 +383,6 @@ const Portfolio = () => {
             Igor Marković
           </div>
 
-          {/* Desktop Navigation */}
           {!isMobile && (
             <div style={{ display: "flex", gap: "2rem" }}>
               {navLinks.map((section) => (
@@ -444,7 +427,6 @@ const Portfolio = () => {
             </div>
           )}
 
-          {/* Mobile Hamburger Button */}
           {isMobile && (
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -465,7 +447,6 @@ const Portfolio = () => {
           )}
         </nav>
 
-        {/* Mobile Menu Dropdown */}
         {isMobile && isMenuOpen && (
           <div
             style={{
@@ -509,7 +490,6 @@ const Portfolio = () => {
           </div>
         )}
 
-        {/* Hero Section */}
         <section
           id="home"
           style={{
@@ -638,7 +618,7 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* About Section (includes Education) */}
+        {/* About Section (includes Experience + Education) */}
         <section
           id="about"
           style={{
@@ -716,6 +696,132 @@ const Portfolio = () => {
                 or chess. I also like contributing to open‑source and exploring
                 new technologies.
               </p>
+
+              {/* Experience section inside About */}
+              <div
+                style={{
+                  marginTop: "2rem",
+                  paddingTop: "1.5rem",
+                  borderTop: "1px solid rgba(167, 139, 250, 0.3)",
+                }}
+              >
+                <h3
+                  style={{
+                    fontSize: "1.5rem",
+                    fontWeight: "700",
+                    color: "#a78bfa",
+                    marginBottom: "1.5rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.6rem",
+                  }}
+                >
+                  <LuBriefcase size={22} />
+                  Experience
+                </h3>
+                <div
+                  style={{
+                    background: "rgba(167, 139, 250, 0.06)",
+                    borderRadius: "16px",
+                    padding: "1.5rem",
+                    border: "1px solid rgba(167, 139, 250, 0.15)",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: isMobile ? "flex-start" : "center",
+                      flexDirection: isMobile ? "column" : "row",
+                      gap: isMobile ? "0.3rem" : "0",
+                      marginBottom: "0.8rem",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontSize: "1.15rem",
+                        fontWeight: "700",
+                        color: "#ffffff",
+                      }}
+                    >
+                      Software Engineer Intern
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "0.9rem",
+                        color: "#a78bfa",
+                        fontWeight: "600",
+                        background: "rgba(167, 139, 250, 0.15)",
+                        padding: "0.3rem 0.8rem",
+                        borderRadius: "8px",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      July 2026
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "1rem",
+                      color: "#c4b5fd",
+                      fontWeight: "500",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    HTEC Group — Backend Software Engineering Intern
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "1.05rem",
+                      lineHeight: "1.7",
+                      color: "#d0d0e8",
+                      fontWeight: "300",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    Worked as a Backend Software Engineering Intern on a Java
+                    Spring Boot parking application, gaining practical
+                    experience developing enterprise‑grade backend systems. I
+                    contributed to the development of RESTful APIs, database
+                    integration, authentication and authorization, and various
+                    backend functionalities. I worked in an Agile development
+                    environment, collaborating with other developers,
+                    participating in sprint planning and code reviews, and
+                    following software engineering best practices.
+                  </p>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    {[
+                      "Java",
+                      "Spring Boot",
+                      "REST APIs",
+                      "Auth",
+                      "Agile/Scrum",
+                      "Code Reviews",
+                    ].map((tech, i) => (
+                      <span
+                        key={i}
+                        style={{
+                          padding: "0.35rem 0.7rem",
+                          background: "rgba(167, 139, 250, 0.15)",
+                          color: "#c4b5fd",
+                          borderRadius: "8px",
+                          fontSize: "0.8rem",
+                          fontWeight: "500",
+                          border: "1px solid rgba(167, 139, 250, 0.3)",
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
               {/* Education section inside About */}
               <div
@@ -872,72 +978,29 @@ const Portfolio = () => {
                       </span>
                     ))}
                   </div>
-                  <div
+                  <a
+                    href={project.link}
                     style={{
-                      display: "flex",
-                      gap: "1.5rem",
+                      display: "inline-flex",
                       alignItems: "center",
+                      gap: "0.5rem",
+                      color: "#a78bfa",
+                      textDecoration: "none",
+                      fontSize: "0.95rem",
+                      fontWeight: "600",
+                      transition: "all 0.3s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.color = "#c4b5fd";
+                      e.target.style.gap = "0.8rem";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.color = "#a78bfa";
+                      e.target.style.gap = "0.5rem";
                     }}
                   >
-                    {/* Existing View Project Link */}
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                        color: "#a78bfa",
-                        textDecoration: "none",
-                        fontSize: "0.95rem",
-                        fontWeight: "600",
-                        transition: "all 0.3s ease",
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.color = "#c4b5fd";
-                        e.currentTarget.style.gap = "0.8rem";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.color = "#a78bfa";
-                        e.currentTarget.style.gap = "0.5rem";
-                      }}
-                    >
-                      View Project <LuExternalLink size={16} />
-                    </a>
-
-                    {/* Conditional Visit Demo Link */}
-                    {project.demoLink && (
-                      <a
-                        href={project.demoLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: "0.5rem",
-                          color: "#ffffff",
-                          background:
-                            "linear-gradient(135deg, #6d28d9 0%, #a78bfa 100%)",
-                          padding: "0.5rem 1rem",
-                          borderRadius: "8px",
-                          textDecoration: "none",
-                          fontSize: "0.9rem",
-                          fontWeight: "600",
-                          transition: "all 0.3s ease",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.transform = "scale(1.05)";
-                          e.currentTarget.style.filter = "brightness(1.1)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.transform = "scale(1)";
-                          e.currentTarget.style.filter = "brightness(1)";
-                        }}
-                      >
-                        Visit Demo <LuPlay size={16} />
-                      </a>
-                    )}
-                  </div>
+                    View Project <LuExternalLink size={16} />
+                  </a>
                 </div>
               ))}
             </div>
@@ -1198,14 +1261,8 @@ const Portfolio = () => {
                 <LuLinkedin size={24} />
                 LinkedIn
               </a>
-
               <button
-                onClick={() =>
-                  window.open(
-                    "https://igormarkovic11.github.io/resume.pdf",
-                    "_blank",
-                  )
-                }
+                onClick={() => window.open("/IgorMarkovicCV.pdf", "_blank")}
                 style={{
                   padding: "1rem 2.5rem",
                   fontSize: "1.1rem",
