@@ -142,8 +142,8 @@ const Portfolio = () => {
       description:
         "Progressive Web App for managing daily operations of a beauty salon. Features a realtime appointment calendar with drag‑and‑drop scheduling, daily and monthly financial analytics, cashbox expense tracking, and Web Push Notifications using VAPID and Supabase Edge Functions. Mobile‑first and installable across devices without an app store.",
       tech: ["React", "TypeScript", "Supabase", "PWA", "Web Push/VAPID"],
-      liveLink: null,
-      githubLink: null,
+      liveLink: "#",
+      githubLink: "#",
       image: "💇",
     },
     {
@@ -160,8 +160,8 @@ const Portfolio = () => {
       description:
         "Football club ticketing system with PayPal integration. Built with Spring Boot (backend) and Angular (frontend). RESTful architecture, secure transactions.",
       tech: ["Spring Boot", "Angular", "PayPal API", "MySQL"],
-      liveLink: null,
-      githubLink: "https://github.com/igormarkovic11/online-ticketing-service",
+      liveLink: "#",
+      githubLink: "#",
       image: "🎫",
     },
     {
@@ -169,8 +169,8 @@ const Portfolio = () => {
       description:
         "High‑performance platform with live match commentary, roster management, league standings, and admin dashboard. Built with React, Vite, Firebase, deployed on Vercel.",
       tech: ["React", "Vite", "Firebase", "Vercel", "PWA"],
-      liveLink: "https://fknovodoba.com/",
-      githubLink: "https://github.com/igormarkovic11/fknovodoba",
+      liveLink: "#",
+      githubLink: "#",
       image: "⚽",
     },
     {
@@ -178,8 +178,8 @@ const Portfolio = () => {
       description:
         "Appointment scheduling system with user time‑slot selection and admin panel. Focus on clean, structured design.",
       tech: ["Angular", "Firebase", "PWA"],
-      liveLink: "https://booking-ashen-nine.vercel.app",
-      githubLink: "https://github.com/igormarkovic11/booking",
+      liveLink: "#",
+      githubLink: "#",
       image: "📅",
     },
     {
@@ -188,7 +188,7 @@ const Portfolio = () => {
         "Full CRUD operations for doctors, patients, medical records, and appointments. Built with .NET (WPF).",
       tech: [".NET", "WPF", "C#", "SQL Server"],
       liveLink: null,
-      githubLink: "https://github.com/igormarkovic11/eObrazovanje",
+      githubLink: "#",
       image: "🏥",
     },
     {
@@ -197,7 +197,7 @@ const Portfolio = () => {
         "Statistics Department module with data aggregation and reporting. Containerised with Docker, inter‑service communication.",
       tech: ["Docker", "Angular", "Team Collaboration"],
       liveLink: null,
-      githubLink: null,
+      githubLink: "#",
       image: "🏛️",
     },
     {
@@ -206,7 +206,7 @@ const Portfolio = () => {
         "Android quiz app with word puzzles and math challenges, real‑time scoring and state management.",
       tech: ["Java", "Android Studio"],
       liveLink: null,
-      githubLink: "https://github.com/igormarkovic11/android",
+      githubLink: "#",
       image: "📱",
     },
   ];
@@ -1311,7 +1311,12 @@ const Portfolio = () => {
                 LinkedIn
               </a>
               <button
-                onClick={() => window.open("/IgorMarkovicCV.pdf", "_blank")}
+                onClick={() =>
+                  window.open(
+                    `${import.meta.env.BASE_URL}IgorMarkovicCV.pdf`,
+                    "_blank",
+                  )
+                }
                 style={{
                   padding: "1rem 2.5rem",
                   fontSize: "1.1rem",
