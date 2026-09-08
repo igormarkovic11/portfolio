@@ -142,7 +142,8 @@ const Portfolio = () => {
       description:
         "Progressive Web App for managing daily operations of a beauty salon. Features a realtime appointment calendar with drag‑and‑drop scheduling, daily and monthly financial analytics, cashbox expense tracking, and Web Push Notifications using VAPID and Supabase Edge Functions. Mobile‑first and installable across devices without an app store.",
       tech: ["React", "TypeScript", "Supabase", "PWA", "Web Push/VAPID"],
-      link: "#",
+      liveLink: null,
+      githubLink: null,
       image: "💇",
     },
     {
@@ -150,7 +151,8 @@ const Portfolio = () => {
       description:
         "Backend for an enterprise parking application built during my internship at HTEC Group. Contributed to RESTful APIs, database integration, authentication and authorization, and core backend functionality in an Agile team environment.",
       tech: ["Java", "Spring Boot", "REST APIs", "Agile/Scrum"],
-      link: "#",
+      liveLink: null,
+      githubLink: null,
       image: "🅿️",
     },
     {
@@ -158,7 +160,8 @@ const Portfolio = () => {
       description:
         "Football club ticketing system with PayPal integration. Built with Spring Boot (backend) and Angular (frontend). RESTful architecture, secure transactions.",
       tech: ["Spring Boot", "Angular", "PayPal API", "MySQL"],
-      link: "#",
+      liveLink: null,
+      githubLink: "https://github.com/igormarkovic11/online-ticketing-service",
       image: "🎫",
     },
     {
@@ -166,7 +169,8 @@ const Portfolio = () => {
       description:
         "High‑performance platform with live match commentary, roster management, league standings, and admin dashboard. Built with React, Vite, Firebase, deployed on Vercel.",
       tech: ["React", "Vite", "Firebase", "Vercel", "PWA"],
-      link: "#",
+      liveLink: "https://fknovodoba.com/",
+      githubLink: "https://github.com/igormarkovic11/fknovodoba",
       image: "⚽",
     },
     {
@@ -174,7 +178,8 @@ const Portfolio = () => {
       description:
         "Appointment scheduling system with user time‑slot selection and admin panel. Focus on clean, structured design.",
       tech: ["Angular", "Firebase", "PWA"],
-      link: "#",
+      liveLink: "https://booking-ashen-nine.vercel.app",
+      githubLink: "https://github.com/igormarkovic11/booking",
       image: "📅",
     },
     {
@@ -182,7 +187,8 @@ const Portfolio = () => {
       description:
         "Full CRUD operations for doctors, patients, medical records, and appointments. Built with .NET (WPF).",
       tech: [".NET", "WPF", "C#", "SQL Server"],
-      link: "#",
+      liveLink: null,
+      githubLink: "https://github.com/igormarkovic11/eObrazovanje",
       image: "🏥",
     },
     {
@@ -190,7 +196,8 @@ const Portfolio = () => {
       description:
         "Statistics Department module with data aggregation and reporting. Containerised with Docker, inter‑service communication.",
       tech: ["Docker", "Angular", "Team Collaboration"],
-      link: "#",
+      liveLink: null,
+      githubLink: null,
       image: "🏛️",
     },
     {
@@ -198,7 +205,8 @@ const Portfolio = () => {
       description:
         "Android quiz app with word puzzles and math challenges, real‑time scoring and state management.",
       tech: ["Java", "Android Studio"],
-      link: "#",
+      liveLink: null,
+      githubLink: "https://github.com/igormarkovic11/android",
       image: "📱",
     },
   ];
@@ -978,29 +986,70 @@ const Portfolio = () => {
                       </span>
                     ))}
                   </div>
-                  <a
-                    href={project.link}
+                  <div
                     style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.5rem",
-                      color: "#a78bfa",
-                      textDecoration: "none",
-                      fontSize: "0.95rem",
-                      fontWeight: "600",
-                      transition: "all 0.3s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.color = "#c4b5fd";
-                      e.target.style.gap = "0.8rem";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.color = "#a78bfa";
-                      e.target.style.gap = "0.5rem";
+                      display: "flex",
+                      gap: "1.2rem",
+                      flexWrap: "wrap",
                     }}
                   >
-                    View Project <LuExternalLink size={16} />
-                  </a>
+                    {project.liveLink && (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "0.5rem",
+                          color: "#a78bfa",
+                          textDecoration: "none",
+                          fontSize: "0.95rem",
+                          fontWeight: "600",
+                          transition: "all 0.3s ease",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.color = "#c4b5fd";
+                          e.target.style.gap = "0.8rem";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.color = "#a78bfa";
+                          e.target.style.gap = "0.5rem";
+                        }}
+                      >
+                        Live Demo <LuExternalLink size={16} />
+                      </a>
+                    )}
+                    {project.githubLink && (
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "0.5rem",
+                          color: "#a78bfa",
+                          textDecoration: "none",
+                          fontSize: "0.95rem",
+                          fontWeight: "600",
+                          transition: "all 0.3s ease",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.target.style.color = "#c4b5fd";
+                          e.target.style.gap = "0.8rem";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.target.style.color = "#a78bfa";
+                          e.target.style.gap = "0.5rem";
+                        }}
+                      >
+                        Code <LuGithub size={16} />
+                      </a>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -1262,7 +1311,7 @@ const Portfolio = () => {
                 LinkedIn
               </a>
               <button
-                onClick={() => window.open("/IgorMarkovicCV.pdf", "_blank")}
+                onClick={() => window.open("/resume.pdf", "_blank")}
                 style={{
                   padding: "1rem 2.5rem",
                   fontSize: "1.1rem",
